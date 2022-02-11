@@ -15,6 +15,9 @@ function Main(props) {
   return (
     <section>
       <p>We serve surprisingy {props.adjective} food</p>
+      <ul style={{textAlign: "center"}}>
+        {props.dishes.map((dish) => <li>{dish}</li>)}
+      </ul>
     </section>
   )
 }
@@ -27,13 +30,20 @@ function Footer(props){
   )
 }
 
+const dishes = [
+  "Chicken curry",
+  "Tomato soup",
+  "Spaghetti"
+];
+
+
 
 
 function App() {
   return (
     <div className="App">
     <Header name="Adam"/>
-    <Main adjective="amazing"/>
+    <Main adjective="amazing" dishes={dishes}/>
     <Footer year={new Date().getFullYear()}/>
     </div>
   );
