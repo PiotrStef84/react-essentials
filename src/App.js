@@ -1,55 +1,25 @@
+import { useState, useEffect } from 'react';
 import './App.css';
-import restaurant from "./restaurant.jpg"
-
-function Header(props) {
-
-  return(
-    <header>
-      <h1>{props.name}'s Kitchen</h1>
-    </header>
-  )
-}
-
-
-function Main(props) {
-  return (
-    <section className='list'>
-      <p>We serve surprisingy {props.adjective} food</p>
-      <img src={restaurant} height={200} alt="restaurant table"/>
-      <ul style={{textAlign: "center"}}>
-        {props.dishes.map((dish) => 
-        <li key={dish.id}>{dish.title}</li>)}
-      </ul>
-    </section>
-  )
-}
-
-function Footer(props){
-  return(
-  <footer>
-    <p>Since {props.year}</p>
-  </footer>
-  )
-}
-
-const dishes = [
-  "Chicken curry",
-  "Tomato soup",
-  "Spaghetti",
-  "Juice"
-];
-
-const dishObjects = dishes.map((dish,i) => ({id: i, title: dish}));
 
 
 function App() {
-  return (
-    <div className="App">
-    <Header name="Adam"/>
-    <Main adjective="amazing" dishes={dishObjects}/>
-    <Footer year={new Date().getFullYear()}/>
-    </div>
-  );
-}
+  const [emotion, setEmotion] = useState("happy");
+  const [secondary, setSecondary] = useState("tired");
+  
+  useEffect(() => {console.log(`It's ${emotion} around here!`)},[emotion])
+
+  useEffect(() => {console.log(`It's also ${secondary} around here!`)})
+  
+  return(
+  <>
+  <h1>Current emotion is {emotion} and {secondary}</h1>
+  <button onClick={() => setEmotion("happy")}>Happy</button>
+  <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
+  <button onClick={() => setEmotion("relaxed")}>Relax</button>
+  <hr />
+  <button onClick={() => setSecondary("groovy")}>Groovy</button>
+  </>
+  )}
+
 
 export default App;
